@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     PlayerManager playerManager;
 
+    public Inventory inventory;
+    public string[] currentInventory = new string[10];
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +49,10 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         //reference to player manager
         playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
         //Cursor.lockState = CursorLockMode.Locked;
+        for(int i= 0; i < 10; i++)
+        {
+            currentInventory[i] = "Fists";
+        }
     }
 
     void Start()
@@ -218,5 +225,18 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     void Die()
     {
         playerManager.Die();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        IInventoryItem item = collision.collider.GetComponent<IInventoryItem>();
+        if(item != null)
+        {
+            inventory.AddItem(item);
+            // for(int i = 0; i < stringInventory.Length; i++)
+            // {
+                 
+            // }
+        } 
     }
 }
