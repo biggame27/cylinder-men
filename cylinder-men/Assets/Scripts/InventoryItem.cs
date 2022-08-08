@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public interface IInventoryItem
 {
@@ -9,7 +10,12 @@ public interface IInventoryItem
     void OnPickup();
 }
 
-// public class InventoryEventArgs : EventArgs
-// {
-//     pulic Inventory
-// }
+public class InventoryEventArgs : EventArgs
+{
+    public IInventoryItem Item;
+    
+    public InventoryEventArgs(IInventoryItem item)
+    {
+        Item = item;
+    }
+}
