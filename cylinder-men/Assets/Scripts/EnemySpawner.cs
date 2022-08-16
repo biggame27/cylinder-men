@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
 
     public int zombieCount = 0;
 
-    public const int maxZombies = 2;
+    public const int maxZombies = 15;
 
     GameObject[] players;
 

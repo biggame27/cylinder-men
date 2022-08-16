@@ -50,6 +50,17 @@ public class Enemy : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         myCollider = GetComponent<Collider>();
+        StartCoroutine(CheckPlace());
+    }
+
+    IEnumerator CheckPlace()
+    {
+        while(true)
+        {
+            SearchWalkPoint();
+            yield return new WaitForSeconds(2f);
+        }
+
     }
 
     void Update()
